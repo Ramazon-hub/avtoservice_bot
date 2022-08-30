@@ -1,10 +1,10 @@
-import {Pool,QueryResultRow} from "pg";
+import { Pool, QueryResultRow } from "pg";
 
 import { DB_CONNECTION } from "../config";
 
-const pool = new Pool({ connectionString: DB_CONNECTION});
+const pool = new Pool({ connectionString: DB_CONNECTION });
 
-export async function query<Row  extends  QueryResultRow, I extends Array<unknown> = Array<unknown>>(
+export async function query<Row extends QueryResultRow, I extends Array<unknown> = Array<unknown>>(
 	queryText: string,
 	values?: I
 ): Promise<Array<Row>> {
@@ -14,10 +14,10 @@ export async function query<Row  extends  QueryResultRow, I extends Array<unknow
 	return rows;
 }
 
-export async function queryRow<Row extends QueryResultRow, I extends Array<unknown> = Array<unknown>>(
-	queryText: string,
-	values?: I
-): Promise<Row> {
+export async function queryRow<
+	Row extends QueryResultRow,
+	I extends Array<unknown> = Array<unknown>
+>(queryText: string, values?: I): Promise<Row> {
 	const [row] = await query<Row, I>(queryText, values);
 	return row;
 }
