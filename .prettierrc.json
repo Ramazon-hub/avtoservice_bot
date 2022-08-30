@@ -1,0 +1,18 @@
+{
+	"printWidth": 100,
+	"tabWidth": 4,
+	"useTabs": true,
+	"singleQuote": false,
+	"semi": true,
+	"arrowParens": "always",
+	"trailingComma": "es5",
+	"overrides": [
+		{
+			"files": ["swagger.json"],
+			"options": {
+				"useTabs": false,
+				"tabWidth": 2
+			}
+		}
+	]
+}
