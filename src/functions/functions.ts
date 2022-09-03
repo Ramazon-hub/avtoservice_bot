@@ -35,4 +35,17 @@ export class Functions {
 			},
 		});
 	}
+
+	static async setSettings(bot: TelegramBot, chat_id: number): Promise<void> {
+		await bot.sendMessage(chat_id, " ", {
+			reply_markup: {
+				keyboard: Keyboards.setSettingsKeyboard,
+				resize_keyboard: true,
+			},
+		});
+	}
+
+	// static async setLanguage(lang: string,bot: TelegramBot,user: User) {
+
+	// }
 }

@@ -1,10 +1,17 @@
 export class Keyboards {
-	static setPhoneKeyboard: [
+	static setPhoneKeyboard = [
 		[
 			{
-				text: "Mening telefon raqamim";
-				request_contact: true;
-			}
-		]
+				text: "Mening telefon raqamim",
+				request_contact: true,
+			},
+		],
+	];
+	static setSettingsKeyboard = [
+		[
+			{
+				text: "Settings",
+			},
+		],
 	];
 }

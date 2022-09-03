@@ -14,6 +14,7 @@ export class Controllers {
 				chat_id,
 				"Assalom alekum botimizga xush kelibsiz.Iltimos ismingizni kiriting !"
 			);
+			await Functions.setSettings(bot, chat_id);
 		} else if (user.step === 1 && msg.text?.trim()) {
 			await Functions.setName(msg.text, bot, user);
 		} else if (user.step === 3) {
@@ -27,6 +28,10 @@ export class Controllers {
 				"Men sizni tushunmadim . /n Iltimos men bilan faqat buyruqlar orqali gaplashing. /n /start"
 			);
 		}
+		await bot.setMyCommands([
+			{ command: "/start", description: "Boshlash" },
+			{ command: "/contact", description: "Contact" },
+		]);
 	}
 
 	static async contactController(msg: Message, bot: TelegramBot) {
