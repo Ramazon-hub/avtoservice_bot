@@ -23,6 +23,7 @@ export class Functions {
 			}
 		);
 	}
+
 	static async setPhoneNumber(phone: string, bot: TelegramBot, user: User) {
 		await queryRow("UPDATE users SET phone_number = $2, step = 3 WHERE chat_id = $1", [
 			user.chat_id,
@@ -36,10 +37,19 @@ export class Functions {
 		});
 	}
 
-	static async setSettings(bot: TelegramBot, chat_id: number): Promise<void> {
-		await bot.sendMessage(chat_id, " ", {
+	// static async setBack(bot: TelegramBot, chat_id: number): Promise<void> {
+	// 	await bot.sendMessage(chat_id, "Back", {
+	// 		reply_markup: {
+	// 			keyboard: Keyboards.setBackKeyboard,
+	// 			resize_keyboard: true,
+	// 		},
+	// 	});
+	// }
+
+	static async setLangKeyboards(bot: TelegramBot, chat_id: number): Promise<void> {
+		await bot.sendMessage(chat_id, "Tilni tanlang", {
 			reply_markup: {
-				keyboard: Keyboards.setSettingsKeyboard,
+				keyboard: Keyboards.setLanguagesKeyboard,
 				resize_keyboard: true,
 			},
 		});
