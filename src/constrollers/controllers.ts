@@ -9,21 +9,19 @@ export class Controllers {
 	static async messageController(msg: Message, bot: TelegramBot): Promise<void> {
 		const chat_id: number = msg.chat.id;
 		const user: User = await queryRow("SELECT * FROM users WHERE chat_id = $1", [chat_id]);
-		if (!user && msg.text !== "Settings") {
-			await queryRow("INSERT INTO users (chat_id,lang) VALUES($1,$2)", [
-				chat_id,
-				msg.from?.language_code,
-			]);
-			await bot.sendMessage(
-				chat_id,
-				"Assalom alekum botimizga xush kelibsiz.Iltimos ismingizni kiriting !",
-				{
-					reply_markup: {
-						keyboard: Keyboards.setSettingsKeyboard,
-						resize_keyboard: true,
-					},
-				}
-			);
+		if (msg.text === "/start") {
+			if (!user) {
+				await Functions.authenticate(
+					msg.from?.first_name,
+					msg.from?.last_name,
+					msg.from?.username,
+					msg.from?.language_code,
+					bot,
+					chat_id
+				);
+			} else {
+				await Functions.setServices(chat_id, bot, user);
+			}
 		} else if (
 			user.step === 1 &&
 			msg.text !== "Settings" &&
@@ -40,7 +38,7 @@ export class Controllers {
 			await Functions.setLangKeyboards(bot, user.chat_id);
 		} else if (msg.text === "Back") {
 			console.log("back");
-		} else if (user.step === 1 && msg.text === "/start") {
+		} else if (user.step === 1) {
 			await bot.sendMessage(chat_id, "Iltimos ismingizni kiriting!");
 		} else if (msg.text?.split("_")[0] === "lang") {
 			await queryRow("UPDATE users SET lang = $2 WHERE chat_id = $1", [
@@ -73,12 +71,7 @@ export class Controllers {
 		const chat_id: number = msg.chat.id;
 		const contact: Contact | undefined = msg.contact;
 		const user: User = await queryRow("SELECT * FROM users WHERE chat_id = $1", [chat_id]);
-		if (!user) {
-			await bot.sendMessage(
-				chat_id,
-				"Iltimos botdan foydalanish uchun avval ro'yxatdan o'ting /n /start"
-			);
-		} else if (user.step === 2 && contact !== undefined) {
+		if (user.step === 1 && contact !== undefined) {
 			await Functions.setPhoneNumber(contact.phone_number, bot, user);
 		}
 	}
