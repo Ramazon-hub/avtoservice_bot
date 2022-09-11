@@ -6,7 +6,7 @@ export interface User {
 	username: string;
 	phone_number: string;
 	lang: string;
-	step: number;
+	step: string;
 }
 
 export interface ServiceType {

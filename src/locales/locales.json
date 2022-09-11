@@ -1,0 +1,134 @@
+{
+	"initial": {
+		"text": "Tilni tanlang / Выберите язык",
+		"warning_text": "Siz ro'yxatdan o'tmagansiz, iltimos oldin ro'yxatdan o'ting!  \n\nВы не зарегистрированы, сначала зарегистрируйтесь!",
+		"error_text": "Iltimos, tilni tanlang! / Пожалуйста, выберите язык!",
+		"keyboard": [["uz 🇺🇿", "ру 🇷🇺"]]
+	},
+
+	"uz": {
+		"start": {
+			"text": "Botga xush kelibsiz. Ism familiyangizni kiriting",
+			"warning_text": "Siz botdan ro'yxatdan o'tib bo'lgansiz",
+			"stiker": "../../assets/stiker/uz.png"
+		},
+		"name": {
+			"text": "Tug'ilgan sanangizni kiriting \n\n<i>masalan: 2022-03-22</i>",
+			"error_text": "Iltimos, ism familyangizni to'liq kiriting"
+		},
+		"date": {
+			"text": "Jinsingizni kiriting",
+			"keyboard": [["Erkak", "Ayol"]],
+			"error_text": "Iltimos, tug'ilgan sanangizni ko'rsatilgandek kiriting \n\n<i>masalan: 2022-03-22</i>"
+		},
+		"gender": {
+			"text": "Telefon raqamingizni kiriting",
+			"keyboard": [
+				[
+					{
+						"text": "Raqamni kiritish",
+						"request_contact": true
+					}
+				]
+			],
+			"error_text": "Iltimos, jinsingizni kiriting"
+		},
+		"number": {
+			"text": "<b>Bu sizning QR kodingiz 🖼</b> \n\n📠 Kassada ushbu koddan foydalanishingiz mumkin.",
+			"keyboard": [["🖼 QR code", "💸 Balans"], ["✍️ Fikr bildirish"]],
+			"error_text": "Iltimos, telefon raqamingizni kiriting"
+		},
+		"call": {
+			"text": "☎️ Murojaat uchun: <b>+998 94 652 42 42</b>",
+			"balanceText": "⚠️ Shaxsiy ma'lumotlaringiz va balansingizda muammo bo'lsa @Citycardtech ga murojaat qilishingizni so'raymiz"
+		},
+		"review": {
+			"text": "Xizmatimizni 5 balli tizimda baholang va bizga yordam bering!",
+			"text_reason": "Nima sababdan bunday baholadingiz?",
+			"text_thanks": "E'tiboringiz uchun rahmat!",
+			"filial_text": "Filial tanlang",
+			"filial": [["Do'mbirobod"]],
+			"keyboard": [
+				["Hammasi zo'r ❤️"],
+				["Yaxshi 👍"],
+				["O'rtacha ⭐️"],
+				["Yomon 😒"],
+				["Juda yomon 😡"],
+				["⬅️ Orqaga"]
+			]
+		},
+		"rank": {
+			"Hammasi zo'r ❤️": 5,
+			"Yaxshi 👍": 4,
+			"O'rtacha ⭐️": 3,
+			"Yomon 😒": 2,
+			"Juda yomon 😡": 1
+		},
+		"error": {
+			"text": "Iltimos, ma'lumotlarni to'liq kiriting"
+		}
+	},
+
+	"ru": {
+		"start": {
+			"text": "Добро пожаловать в наш бот. Введите ваше имя и фамилию",
+			"warning_text": "Вы уже зарегистрированы в боте",
+			"stiker": "../../assets/stiker/ru.png"
+		},
+		"name": {
+			"text": "Введите дату рождения \n\n<i> (например: 2022-03-22) </i>",
+			"error_text": "Пожалуйста, введите свое полное имя"
+		},
+		"date": {
+			"text": "Введите свой пол",
+			"keyboard": [["Мужской", "Женский"]],
+			"error_text": "Введите дату своего рождения, как показано \n\n <i>например: 2022-03-22 </i>"
+		},
+		"gender": {
+			"text": "Введите номер телефона",
+			"keyboard": [
+				[
+					{
+						"text": "Номер телефона",
+						"request_contact": true
+					}
+				]
+			],
+			"error_text": "Пожалуйста, введите свой пол"
+		},
+		"number": {
+			"text": "<b> Это ваш QR-код 🖼 </b> \n\n📠 Вы можете использовать этот код на кассе.",
+			"keyboard": [["🖼 QR-код", "💸Баланс"], ["✍️ Оставить отзыв"]],
+			"error_text": "Пожалуйста, введите ваш номер телефона"
+		},
+		"call": {
+			"text": "☎️ Для информации:: <b>+998 94 652 42 42</b>",
+			"balanceText": "⚠️ Если у вас возникли проблемы с вашей личной информацией и балансом, пожалуйста, свяжитесь с @Citycardtech."
+		},
+		"review": {
+			"text": "Оцените наш сервис по 5 бальной шкале и помогите нам!",
+			"text_reason": "Почему вы сделали такую оценку?",
+			"text_thanks": "Спасибо за Ваше внимание!",
+			"filial_text": "Выберите филиал",
+			"filial": [["Домбирабад"]],
+			"keyboard": [
+				["Отлично ❤️"],
+				["Хорошо 👍"],
+				["Нормально ⭐️"],
+				["Плохо 😒"],
+				["Очень плохо 😡"],
+				["⬅️ Назад"]
+			]
+		},
+		"rank": {
+			"Отлично ❤️": 5,
+			"Хорошо 👍": 4,
+			"Нормально ⭐️": 3,
+			"Плохо 😒": 2,
+			"Очень плохо 😡": 1
+		},
+		"error": {
+			"text": "Пожалуйста, введите данные полностью"
+		}
+	}
+}

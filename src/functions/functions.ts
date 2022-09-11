@@ -1,47 +1,45 @@
-import TelegramBot from "node-telegram-bot-api";
+import TelegramBot, { Message } from "node-telegram-bot-api";
 
 import { Keyboard, ServiceType, User } from "types/types";
 
 import { query, queryRow } from "../lib/postgres";
-import { Keyboards } from "../keyboards/keyboards";
+import { setPhoneKeyboard, setSettingsKeyboard } from "../keyboards/keyboards";
 
+export async function setStep(chat_id: number, step: string) {
+	await queryRow("UPDATE users SET step = $2 WHERE chat_id = $1", [chat_id, step]);
+}
+
+export async function updateLang(msg: Message, bot: TelegramBot): Promise<void> {
+	const chat_id: number = msg.chat.id;
+	const lang = msg.text?.split("_")[1];
+
+	await queryRow("UPDATE users SET lang = $2 WHERE chat_id = $1", [chat_id, lang]);
+	//:TODO postgres update bo'lmasa ham error qaytmaydi shuni tekshirish
+
+	await bot.sendMessage(chat_id, "Update succesfull", {
+		reply_markup: {
+			keyboard: setSettingsKeyboard,
+			resize_keyboard: true,
+		},
+	});
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+// KERAK BO'P QOLISHI MUMKIN DEB QOLDIRDIM KODLARNI QARAB YOZISHGA KEYN O'CHIRIB TASHLAYMIZ
+// ------------------------------------------------------------------------------------------------------------------
 export class Functions {
 	static async setName(text: string | undefined, bot: TelegramBot, user: User): Promise<void> {
-		await queryRow("UPDATE users SET full_name = $2, step = 2 WHERE chat_id = $1", [
+		await queryRow("UPDATE users SET first_name = $2, step = 2 WHERE chat_id = $1", [
 			user.chat_id,
 			text,
 		]);
 		//:TODO postgres update bo'lmasa ham error qaytmaydi shuni tekshirish
 		await bot.sendMessage(
 			user.chat_id,
-			"Ro'yxatdan o'tish ! /n  1) Ism-familya ✅ \\n 2) Telefon  raqamingizni bizga yuborish  uchun ⬇️ tugmani bosing",
+			" Telefon  raqamingizni bizga yuborish  uchun ⬇️ tugmani bosing",
 			{
 				reply_markup: {
-					keyboard: Keyboards.setPhoneKeyboard,
-					resize_keyboard: true,
-				},
-			}
-		);
-	}
-
-	static async authenticate(
-		first_name: string | undefined,
-		last_name: string | undefined,
-		username: string | undefined,
-		language_code: string | undefined,
-		bot: TelegramBot,
-		chat_id: number
-	): Promise<void> {
-		await queryRow(
-			"INSERT INTO users (chat_id,lang,first_name,last_name,username) VALUES($1,$2,$3,$4,$5)",
-			[chat_id, language_code, first_name, last_name, username]
-		);
-		await bot.sendMessage(
-			chat_id,
-			"Assalom alekum botimizga xush kelibsiz! Telefon raqamingizni bizga yuborish  uchun ⬇️ tugmani bosing",
-			{
-				reply_markup: {
-					keyboard: Keyboards.setPhoneKeyboard,
+					keyboard: setPhoneKeyboard,
 					resize_keyboard: true,
 				},
 			}
@@ -67,18 +65,6 @@ export class Functions {
 			}
 		);
 	}
-	static async setPhoneNumber(phone: string, bot: TelegramBot, user: User) {
-		await queryRow("UPDATE users SET phone_number = $2, step = 3 WHERE chat_id = $1", [
-			user.chat_id,
-			phone,
-		]);
-		//:TODO postgres update bo'lmasa ham error qaytmaydi shuni tekshirish
-		await bot.sendMessage(user.chat_id, "Register succesfull", {
-			reply_markup: {
-				remove_keyboard: true,
-			},
-		});
-	}
 
 	// static async setBack(bot: TelegramBot, chat_id: number): Promise<void> {
 	// 	await bot.sendMessage(chat_id, "Back", {
@@ -88,15 +74,6 @@ export class Functions {
 	// 		},
 	// 	});
 	// }
-
-	static async setLangKeyboards(bot: TelegramBot, chat_id: number): Promise<void> {
-		await bot.sendMessage(chat_id, "Tilni tanlang", {
-			reply_markup: {
-				keyboard: Keyboards.setLanguagesKeyboard,
-				resize_keyboard: true,
-			},
-		});
-	}
 
 	// static async setLanguage(lang: string,bot: TelegramBot,user: User) {
 

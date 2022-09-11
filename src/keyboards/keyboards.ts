@@ -1,43 +1,75 @@
-export class Keyboards {
-	static setPhoneKeyboard = [
-		[
-			{
-				text: "Mening telefon raqamim",
-				request_contact: true,
-			},
-			{
-				text: "Settings",
-			},
-		],
-	];
-	static setSettingsKeyboard = [
-		[
-			{
-				text: "Settings",
-			},
-		],
-	];
-	static setLanguagesKeyboard = [
-		[
-			{
-				text: "lang_uz",
-			},
-			{
-				text: "lang_ru",
-			},
-			{
-				text: "lang_en",
-			},
-			{
-				text: "back",
-			},
-		],
-	];
-	static setBackKeyboard = [
-		[
-			{
-				text: "back",
-			},
-		],
-	];
-}
+export const setPhoneKeyboard = [
+	[
+		{
+			text: "My phone number",
+			request_contact: true,
+		},
+	],
+	[
+		{
+			text: "Settings",
+		},
+	],
+];
+export const notConnectKeyboard = [
+	[
+		{
+			text: "/start",
+		},
+	],
+];
+export const setSettingsKeyboard = [
+	[
+		{
+			text: "Language",
+		},
+		{
+			text: "Change Phone",
+		},
+	],
+	[
+		{
+			text: "Back",
+		},
+	],
+];
+
+export const defaultKeyboards = [
+	[
+		{
+			text: "Settings",
+		},
+	],
+];
+
+export const setLanguagesKeyboard = [
+	[
+		{
+			text: "lang_uz",
+		},
+		{
+			text: "lang_ru",
+		},
+		{
+			text: "lang_en",
+		},
+		{
+			text: "back",
+		},
+	],
+	[
+		{
+			text: "Settings",
+		},
+	],
+];
+export const setBackKeyboard = [
+	[
+		{
+			text: "back",
+		},
+		{
+			text: "Settings",
+		},
+	],
+];
