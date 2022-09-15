@@ -1,4 +1,5 @@
 import TelegramBot, { Message } from "node-telegram-bot-api";
+// import data from "../locales/locales.json";
 
 import { Keyboard, ServiceType, User } from "types/types";
 
@@ -22,6 +23,25 @@ export async function updateLang(msg: Message, bot: TelegramBot): Promise<void> 
 			resize_keyboard: true,
 		},
 	});
+}
+
+export async function setServices(chat_id: number, bot: TelegramBot) {
+	const service_types: Array<ServiceType> = await query("SELECT * FROM service_types");
+	const service_types_array: Array<Keyboard> = [];
+	service_types.forEach((service_type: ServiceType) =>
+		service_types_array.push({ text: service_type.title_uz })
+	);
+	service_types_array.push({ text: "Settings" });
+	await bot.sendMessage(
+		chat_id,
+		"Siz ro'yxatdan oz'gansiz! Xizmatlardan foydalanishingiz mumkin.",
+		{
+			reply_markup: {
+				keyboard: [service_types_array],
+				resize_keyboard: true,
+			},
+		}
+	);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -65,17 +85,4 @@ export class Functions {
 			}
 		);
 	}
-
-	// static async setBack(bot: TelegramBot, chat_id: number): Promise<void> {
-	// 	await bot.sendMessage(chat_id, "Back", {
-	// 		reply_markup: {
-	// 			keyboard: Keyboards.setBackKeyboard,
-	// 			resize_keyboard: true,
-	// 		},
-	// 	});
-	// }
-
-	// static async setLanguage(lang: string,bot: TelegramBot,user: User) {
-
-	// }
 }

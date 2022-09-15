@@ -1,3 +1,5 @@
+import data from "../locales/locales.json";
+
 export interface User {
 	id: number;
 	chat_id: number;
@@ -5,7 +7,7 @@ export interface User {
 	last_name: string;
 	username: string;
 	phone_number: string;
-	lang: string;
+	lang: keyof typeof data;
 	step: string;
 }
 

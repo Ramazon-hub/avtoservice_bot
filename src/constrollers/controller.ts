@@ -7,9 +7,10 @@ import {
 	setLanguagesKeyboard,
 	setPhoneKeyboard,
 } from "../keyboards/keyboards";
-import { setStep, updateLang } from "../functions/functions";
+import { setServices, setStep, updateLang } from "../functions/functions";
 import { queryRow } from "../lib/postgres";
 import { User } from "../types/types";
+import data from "../locales/locales.json";
 
 import { startController } from "./start/start";
 import { updatePhoneNumber } from "./contact/contact";
@@ -17,22 +18,16 @@ import { updatePhoneNumber } from "./contact/contact";
 export async function Controller(msg: Message, bot: TelegramBot) {
 	const chat_id: number = msg.chat.id;
 	const user: User = await queryRow("SELECT * FROM users WHERE chat_id = $1", [chat_id]);
+	// const start: Record<string, unknown> = data[user.lang];
 	if (msg.text === "/start") {
+		console.log(data[user.lang]);
+
 		if (!user) {
 			await startController(msg, bot);
 		} else {
-			await bot.sendMessage(chat_id, "yuo are alredy register", {
-				reply_markup: {
-					keyboard: defaultKeyboards,
-					resize_keyboard: true,
-				},
-			});
+			await setServices(chat_id, bot);
 		}
-	}
-	// else if (user && msg.contact) {
-	// 	await setPhoneNumber(msg, bot);
-	// }
-	else if (user && msg.text === "Settings") {
+	} else if (user && msg.text === "Settings") {
 		await setStep(chat_id, "settings");
 		await bot.sendMessage(chat_id, msg.text, {
 			reply_markup: {
