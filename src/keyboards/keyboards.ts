@@ -11,6 +11,7 @@ export const setPhoneKeyboard = [
 		},
 	],
 ];
+
 export const notConnectKeyboard = [
 	[
 		{
@@ -18,6 +19,7 @@ export const notConnectKeyboard = [
 		},
 	],
 ];
+
 export const setSettingsKeyboard = [
 	[
 		{
@@ -29,15 +31,7 @@ export const setSettingsKeyboard = [
 	],
 	[
 		{
-			text: "Back",
-		},
-	],
-];
-
-export const defaultKeyboards = [
-	[
-		{
-			text: "Settings",
+			text: "back",
 		},
 	],
 ];
@@ -45,31 +39,28 @@ export const defaultKeyboards = [
 export const setLanguagesKeyboard = [
 	[
 		{
-			text: "lang_uz",
+			text: "uz",
 		},
 		{
-			text: "lang_ru",
+			text: "ru",
 		},
 		{
-			text: "lang_en",
+			text: "en",
 		},
 		{
 			text: "back",
-		},
-	],
-	[
-		{
-			text: "Settings",
 		},
 	],
 ];
-export const setBackKeyboard = [
+
+export const updateLangKeyboard = [
 	[
 		{
-			text: "back",
+			text: "My phone number",
+			request_contact: true,
 		},
 		{
-			text: "Settings",
+			text: "back",
 		},
 	],
 ];
